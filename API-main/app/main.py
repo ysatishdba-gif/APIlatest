@@ -1562,6 +1562,9 @@ async def _run_retrieval_signals(
             include_record_type_matching=True,
             temporal_mode=temporal_mode,
             temporal_shadow=temporal_shadow,
+            # /v2 and /v3 ask once more for an unusable contextual-environment
+            # answer; /v1 keeps its single call.
+            retry_invalid_context=True,
         )
 
         processing_time = v2_result.pop("processing_time_seconds", 0)
