@@ -1,7 +1,58 @@
-PROJECT_ID=your-project-id
-GCP_LOCATION=us
-MODEL_VERSION=gemini-3.5-flash
-CLUSTER_SELECTION_URL=https://cluster-selection-api-68004442910.us-central1.run.app/cluster-selection/v2/cui_matching
-CLUSTER_BQ_PROJECT=aif-usr-p-ep-cg-wcdm-0767
-CLUSTER_BQ_DATASET=aif_wcdm_osm_pipeline
-TRANSACTION_SELECTION_URL=https://transaction-selection-api-705290722717.us-central1.run.app/transaction_selection
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Ignore test and coverage outputs
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.cache
+
+# Ignore local environment files
+*.env
+*.env.*
+
+# Ignore IDE/editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore logs and temp files
+*.log
+*.tmp
+*.bak
+
+# Ignore build and dist folders
+build/
+dist/
+*.egg-info/
+.eggs/
+wheels/
+*.whl
+
+# Ignore node modules (if any)
+node_modules/
+
+# Ignore notebooks (if any)
+app/notebooks/
+
+# Ignore Docker-related files that shouldn't be in the build context
+docker-compose.override.yml
+
+# Ignore test files and results
+tests/
