@@ -2901,10 +2901,16 @@ class ContextualIntentPipeline:
         location: str | None = None,
         include_record_type_matching: bool = True,
         temporal_mode: str = TEMPORAL_MODE_VOCAB_LIST,
+        retry_invalid_context: bool = False,
     ) -> dict[str, Any]:
         """Map each atomic concept's documentation facets AND produce lifecycle
         qualifiers per intent/candidate in one LLM call. Returns parsed
         ContextualEnvironmentOutput + derived TemporalExtractionOutput.
+
+        retry_invalid_context (/v2 and /v3): an answer that cannot be parsed or
+        validated, or is JSON but not an object, is asked for once more before
+        the query is returned without signals. Off (/v1): the single call /v1
+        has always made.
 
         include_record_type_matching: when False the KNOWN RECORD TYPES vocabulary
         block is not injected and no record_type_matches are requested — used by
@@ -3218,11 +3224,12 @@ class ContextualIntentPipeline:
             else ContextualEnvironmentOutput
         )
         # Every record type and temporal window of the response comes out of
-        # this one call, so an answer that cannot be parsed or validated is
-        # asked for once more before the query is returned without them.
+        # this one call; for /v2 and /v3 an unusable answer is asked for once
+        # more before the query is returned without them.
+        attempts = 2 if retry_invalid_context else 1
         context = None
         usage_metadata: dict[str, int] = dict(empty_metadata)
-        for attempt in (1, 2):
+        for attempt in range(1, attempts + 1):
             raw_response, call_usage = await self._call_model_async(
                 prompt,
                 model_name=model_name,
@@ -3233,9 +3240,17 @@ class ContextualIntentPipeline:
                 step_name="contextual_environment",
                 response_schema=schema_model,
             )
-            for key in usage_metadata:
-                usage_metadata[key] += int((call_usage or {}).get(key, 0) or 0)
+            if attempts == 1:
+                usage_metadata = call_usage
+            else:
+                for key in usage_metadata:
+                    usage_metadata[key] += int((call_usage or {}).get(key, 0) or 0)
             data = self._safe_json(raw_response)
+            if retry_invalid_context and not isinstance(data, dict):
+                data = {
+                    "_parsing_error": True,
+                    "_error_message": "response is JSON but not an object",
+                }
 
             failure: dict[str, Any] | None = None
             if data.get("_parsing_error"):
@@ -3254,7 +3269,7 @@ class ContextualIntentPipeline:
                     }
             if failure is None:
                 break
-            retrying = attempt == 1
+            retrying = attempt < attempts
             if self.lg:
                 self.lg.log_struct(
                     message=failure.pop("message")
@@ -3304,6 +3319,7 @@ class ContextualIntentPipeline:
         include_record_type_matching: bool = True,
         temporal_mode: str = TEMPORAL_MODE_VOCAB_LIST,
         temporal_shadow: bool = False,
+        retry_invalid_context: bool = False,
     ) -> dict[str, Any]:
         """Runs the v2 pipeline: v2 query expansion, then parallel intent
         extraction + representative terms. When enable_retrieval_signals is
@@ -3361,6 +3377,7 @@ class ContextualIntentPipeline:
                 location=location,
                 include_record_type_matching=include_record_type_matching,
                 temporal_mode=temporal_mode,
+                retry_invalid_context=retry_invalid_context,
             )
             context_metadata = context_result.get("usage_metadata", {})
             record_type_matches = context_result.get("record_type_matches", []) or []
@@ -3440,6 +3457,7 @@ class ContextualIntentPipeline:
         include_record_type_matching: bool = True,
         temporal_mode: str = TEMPORAL_MODE_VOCAB_LIST,
         temporal_shadow: bool = False,
+        retry_invalid_context: bool = False,
     ) -> dict[str, Any]:
         """Sync wrapper for callers that do not run inside an event loop."""
         return asyncio.run(
@@ -3452,6 +3470,7 @@ class ContextualIntentPipeline:
                 include_record_type_matching=include_record_type_matching,
                 temporal_mode=temporal_mode,
                 temporal_shadow=temporal_shadow,
+                retry_invalid_context=retry_invalid_context,
             )
         )
 
