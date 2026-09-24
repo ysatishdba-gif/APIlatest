@@ -1,0 +1,224 @@
+[
+  {
+    "query": "elevated PSA",
+    "version": "v3",
+    "status_code": 200,
+    "elapsed_seconds": 186.539,
+    "response": {
+      "status": 1,
+      "output": {
+        "total_queries": 1,
+        "queries": [
+          {
+            "id": "q1",
+            "text": "elevated PSA",
+            "record_types": [
+              {
+                "name": "Laboratory Report",
+                "coding": []
+              },
+              {
+                "name": "Progress Note",
+                "coding": []
+              },
+              {
+                "name": "Consultation Report",
+                "coding": []
+              },
+              {
+                "name": "Pathology Report",
+                "coding": []
+              },
+              {
+                "name": "Discharge Summary",
+                "coding": []
+              },
+              {
+                "name": "History And Physical",
+                "coding": []
+              }
+            ],
+            "temporal": {
+              "name": "5 years",
+              "formula": [
+                "REF_POINT",
+                "REF_POINT - 5Y"
+              ],
+              "coding": [
+                {
+                  "system": "UMLS",
+                  "code": "C5452979"
+                },
+                {
+                  "system": "UMLS",
+                  "code": "C4071838"
+                }
+              ]
+            },
+            "tags": [
+              {
+                "name": "PSA",
+                "coding": [],
+                "topics": [
+                  "lab",
+                  "results",
+                  "evaluation",
+                  "laboratory",
+                  "chemistry"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "details": {
+        "timing": {
+          "total_llm_seconds": 65.694352,
+          "max_llm_seconds": 65.694352,
+          "max_llm_seconds_input_index": 0
+        },
+        "usage_metadata": {
+          "action_finder": {
+            "prompt_token_count": 0,
+            "candidates_token_count": 0,
+            "total_token_count": 0,
+            "thinking_token_count": 0
+          },
+          "query_expansion": {
+            "prompt_token_count": 526,
+            "candidates_token_count": 58,
+            "total_token_count": 1256,
+            "thinking_token_count": 672
+          },
+          "intent_extraction": {
+            "prompt_token_count": 2181,
+            "candidates_token_count": 213,
+            "total_token_count": 3792,
+            "thinking_token_count": 1398
+          },
+          "representative_terms": {
+            "prompt_token_count": 656,
+            "candidates_token_count": 19,
+            "total_token_count": 1289,
+            "thinking_token_count": 614
+          },
+          "contextual_environment": {
+            "prompt_token_count": 350266,
+            "candidates_token_count": 2611,
+            "total_token_count": 357556,
+            "thinking_token_count": 4679
+          }
+        },
+        "version": "1.5.15",
+        "timestamp": "2026-09-24T14:54:49.550675-05:00",
+        "source": null,
+        "model": "gemini-3.5-flash",
+        "location": "us"
+      },
+      "service": "intent-nature-breakdown-api-1.5.15"
+    }
+  },
+  {
+    "query": "chest x ray for last 3 years",
+    "version": "v3",
+    "status_code": 200,
+    "elapsed_seconds": 176.939,
+    "response": {
+      "status": 1,
+      "output": {
+        "total_queries": 1,
+        "queries": [
+          {
+            "id": "q1",
+            "text": "chest x ray for last 3 years",
+            "record_types": [
+              {
+                "name": "Radiology Study",
+                "coding": []
+              },
+              {
+                "name": "Radiology Report",
+                "coding": []
+              }
+            ],
+            "temporal": {
+              "name": "3 years",
+              "formula": [
+                "REF_POINT",
+                "REF_POINT - 3Y"
+              ],
+              "coding": [
+                {
+                  "system": "UMLS",
+                  "code": "C4299033"
+                },
+                {
+                  "system": "UMLS",
+                  "code": "C3843792"
+                }
+              ]
+            },
+            "tags": [
+              {
+                "name": "chest X-ray",
+                "coding": [],
+                "topics": [
+                  "diagnostic",
+                  "imaging",
+                  "retrieval",
+                  "radiology",
+                  "radiograph"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "details": {
+        "timing": {
+          "total_llm_seconds": 54.289488,
+          "max_llm_seconds": 54.289488,
+          "max_llm_seconds_input_index": 0
+        },
+        "usage_metadata": {
+          "action_finder": {
+            "prompt_token_count": 0,
+            "candidates_token_count": 0,
+            "total_token_count": 0,
+            "thinking_token_count": 0
+          },
+          "query_expansion": {
+            "prompt_token_count": 532,
+            "candidates_token_count": 51,
+            "total_token_count": 1278,
+            "thinking_token_count": 695
+          },
+          "intent_extraction": {
+            "prompt_token_count": 2177,
+            "candidates_token_count": 196,
+            "total_token_count": 4617,
+            "thinking_token_count": 2244
+          },
+          "representative_terms": {
+            "prompt_token_count": 652,
+            "candidates_token_count": 22,
+            "total_token_count": 922,
+            "thinking_token_count": 248
+          },
+          "contextual_environment": {
+            "prompt_token_count": 350252,
+            "candidates_token_count": 964,
+            "total_token_count": 356461,
+            "thinking_token_count": 5245
+          }
+        },
+        "version": "1.5.15",
+        "timestamp": "2026-09-24T14:57:46.488209-05:00",
+        "source": null,
+        "model": "gemini-3.5-flash",
+        "location": "us"
+      },
+      "service": "intent-nature-breakdown-api-1.5.15"
+    }
+  }
+]
