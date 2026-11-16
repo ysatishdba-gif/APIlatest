@@ -1,11 +1,1 @@
-Apigee proxy repository
-
-The develop app-resources apply succeeded (run 2647932): 62 resources added, 13 changed, and none destroyed. The service itself is not deployed yet. Next, the workflow starts the Apigee request in parallel with deployment setup. Do you already have an Apigee proxy repository for this service?
-
-1.yes, an pigee proxy report exists
-2.no, an new proxy is needed
-3.im not sure
-
-
-Proxy repo name or URL
-If it exists, provide its name or URL.
+git clone https://github.com/mclm-ymc/ymc-satish-code2
