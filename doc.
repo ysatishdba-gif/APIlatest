@@ -1,3 +1,1 @@
-I can’t start Phase 1 yet. Both paths you provided point to the DPE_POC parent folder, which contains the agent-instructions repos—not the required caf-template-project and caf-template-app-resources clones. Also, gh and az aren’t available in this environment.
-
-Please clone both template repos there, check them out to template, pull the latest changes, and make sure gh and az are installed and authenticated. Then send me the paths to each repo directory. I’ll read the canonical bootstrap instructions and check the dpe-poc catalog entry for the PAU and ADO project before proceeding.
+winget install --id GitHub.cli --source winget --accept-package-agreements --accept-source-agreements
