@@ -1,8 +1,3 @@
-Great—the pipeline succeeded, so the develop project infrastructure is applied. Next is the app-resources bootstrap; before configuring the combined frontend/backend service, I need its exact URL path prefixes. What paths should route to the UI and API? Use / if a handler should receive all paths, or enter your intended prefixes (for example, /pre-surgery and /pre-surgery/api).
+How to proceed
 
-Exact path prefix for frontend/UI requests, such as /pre-surgery or /.
-
-
-API path prefix
-
-Exact path prefix for backend/API requests, such as /pre-surgery/api or /api.
+Preflight now resolves dpe-pre-surgery-d, but cannot resolve dpe-pre-surgery-t, dpe-pre-surgery-s, or dpe-pre-surgery-p. No app-resources files, repo, or pipeline have been created. Since you chose develop-only for the project bootstrap, the simplest path is to set allow_missing_project_numbers: true and continue with develop only; the rendered test/stage/main tfvars will contain TODO markers and cannot be applied until those project numbers exist and are filled in. Alternatively, we can pause and provision the remaining project environments first. Which do you prefer?
