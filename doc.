@@ -1,1 +1,1 @@
-I’m setting up the pre-surgery-app dev deploy (project dpe-pre-surgery-d). I need two things: (1) the approved billing_project label for the service, and (2) access to GS2_IMPERSONATION_ACCOUNT_SECRET so I can set it in the GitHub development environment. Everything else is ready.
+gcloud projects describe dpe-pre-surgery-d --format="value(labels)"
