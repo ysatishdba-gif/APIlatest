@@ -1,4 +1,11 @@
-awesome, just reach out if anything seems awry - I can help take a look.  unless you told it you don't need apigee, it should walk you through a couple of tickets that need to be filed for PSCs/etc
+Apigee proxy repository
 
-you'll just want to make sure you get those filed, as there's a bit of a lead time until that team handles them
-(same for a proxy, should you need it)
+The develop app-resources apply succeeded (run 2647932): 62 resources added, 13 changed, and none destroyed. The service itself is not deployed yet. Next, the workflow starts the Apigee request in parallel with deployment setup. Do you already have an Apigee proxy repository for this service?
+
+1.yes, an pigee proxy report exists
+2.no, an new proxy is needed
+3.im not sure
+
+
+Proxy repo name or URL
+If it exists, provide its name or URL.
