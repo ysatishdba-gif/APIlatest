@@ -1,3 +1,4 @@
-How to proceed
+awesome, just reach out if anything seems awry - I can help take a look.  unless you told it you don't need apigee, it should walk you through a couple of tickets that need to be filed for PSCs/etc
 
-Preflight now resolves dpe-pre-surgery-d, but cannot resolve dpe-pre-surgery-t, dpe-pre-surgery-s, or dpe-pre-surgery-p. No app-resources files, repo, or pipeline have been created. Since you chose develop-only for the project bootstrap, the simplest path is to set allow_missing_project_numbers: true and continue with develop only; the rendered test/stage/main tfvars will contain TODO markers and cannot be applied until those project numbers exist and are filled in. Alternatively, we can pause and provision the remaining project environments first. Which do you prefer?
+you'll just want to make sure you get those filed, as there's a bit of a lead time until that team handles them
+(same for a proxy, should you need it)
