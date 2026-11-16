@@ -1,1 +1,13 @@
-The two paths you entered point to the current caf-agent-instructions-1 repo, not the required caf-template-project and caf-template-app-resources repos. I can't follow the bootstrap instructions from these paths. To continue locally, please provide the actual paths to both template clones (on template, pulled to latest) and confirm that gh and az are installed and authenticated in this environment. If you don't have those clones/tools here, choose the handoff option instead.
+### Testing against a live external repo
+
+Some skills document a dependency on a real script or file living in a
+separate, external repo (e.g. `cloud-sql-onboarding`'s `enable_cloud_sql.py`,
+which lives in `caf-template-app-resources`, an Azure DevOps repo — not
+this one). A case can clone that repo directly in its `scaffold:` — see
+`skills/cloud-sql-onboarding/evals/enables-terraform-toggle-against-live-template/`.
+This is a deliberate choice: **unpinned, always the live `template` branch**,
+matching what the skill itself already assumes ("keep your local clone
+pulled to latest") — the point is that a breaking change in the external
+repo surfaces as an eval failure the next time this runs, not that the eval
+stays stable forever. There's no separate drift-detection job; running
+against live HEAD *is* the drift check.
