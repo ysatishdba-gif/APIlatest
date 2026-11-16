@@ -1,1 +1,15 @@
-Good! You're creating a new GCP project with 1 service (pre-surgery-app) that includes both frontend and backend, without a database. This means you'll need routing for both public UI traffic (Akamai) and API traffic (Apigee).
+Now I need the project context details. These values define your infrastructure and GitHub setup:
+
+Project Slug: A short identifier for your GCP projects (e.g., presurgery-app, psa-poc). This will be used to create dev/test/stage/prod project IDs like {slug}-d, {slug}-t, {slug}-s, {slug}-p. (Don't include -d, -t, -s, -p suffixes yourself — just the base slug.)
+
+CAF Program: Which CAF program/folder does this project belong to? Common options include dpe-poc, ext-dpe-poc, cdh-dps, or others. (This determines folder ID, shared projects, and PAU codes.)
+
+App Prefix/Name: The base name for your application resources (e.g., presurgery, psa). Used for GitHub repos, container images, and Cloud Run service names.
+
+GitHub Organization: The Mayo GitHub org where your repos will live (e.g., mclm-dps, mayo-clinic).
+
+Email Address: Your email for GitHub and GCP operations.
+
+Please provide all five values.
+
+Base name for application (used in GitHub repos, Cloud Run service names, etc.)
