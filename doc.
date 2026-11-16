@@ -1,15 +1,34 @@
-Now I need the project context details. These values define your infrastructure and GitHub setup:
+That's fine — we can note the PAU code as TBD and return to it during Phase 1 actual execution. For now, I have enough to guide you through the bootstrap.
 
-Project Slug: A short identifier for your GCP projects (e.g., presurgery-app, psa-poc). This will be used to create dev/test/stage/prod project IDs like {slug}-d, {slug}-t, {slug}-s, {slug}-p. (Don't include -d, -t, -s, -p suffixes yourself — just the base slug.)
+Let me now create a task tracker for all the phases and show you the next steps:
 
-CAF Program: Which CAF program/folder does this project belong to? Common options include dpe-poc, ext-dpe-poc, cdh-dps, or others. (This determines folder ID, shared projects, and PAU codes.)
+Perfect! Now let me display the full workflow and next steps:
 
-App Prefix/Name: The base name for your application resources (e.g., presurgery, psa). Used for GitHub repos, container images, and Cloud Run service names.
+CAF Service Provisioning Workflow — Full Schedule
+Your provisioning will follow these phases:
 
-GitHub Organization: The Mayo GitHub org where your repos will live (e.g., mclm-dps, mayo-clinic).
+Phase	Name	Status	Notes
+0	Scope Gate	✅ Done	New project, 1 service (pre-surgery-app), no DB
+1	Infrastructure Bootstrap	⏳ Next	Create GCP projects + app-resources repos
+1b	Cloud SQL Onboarding	⊗ Skipped	Not needed
+2	GitHub Actions CI/CD	⏳ Pending	Frontend + backend pipelines
+3	GitHub Environments	⏳ Pending	dev/test/stage/prod setup
+4	First Deploy	⏳ Pending	Verify dev deployment
+5	Apigee Proxy Setup	⏳ Pending	Backend API routing
+6	Akamai Frontend Routing	⏳ Pending	Public UI routing
+Phase 1 — Infrastructure Bootstrap
+What happens: This phase creates your GCP projects (dpe-pre-surgery-d, -t, -s, -p) and the app-resources repo that holds Terraform for infrastructure.
 
-Email Address: Your email for GitHub and GCP operations.
+How to proceed:
 
-Please provide all five values.
+I'll invoke the caf-project-bootstrap skill (available in the caf-template-project repo)
+You'll provide the PAU code and final bootstrap config
+The skill will generate and merge Terraform code into your app-resources repo
+GitHub Actions will automatically apply the Terraform to create your projects
+Is the caf-project-bootstrap skill available in your current session? (It may be in a different repository or workspace.)
 
-Base name for application (used in GitHub repos, Cloud Run service names, etc.)
+Would you like me to:
+
+A) Check if the skill is available now and proceed with Phase 1?
+B) Provide you with the Phase 1 bootstrap config summary to execute manually in the caf-template-project repo?
+Which would you prefer?
