@@ -1,1 +1,1 @@
-git clone https://github.com/mclm-ymc/ymc-satish-code2
+Yes, a minimal non-clinical placeholder is acceptable. Use Python with FastAPI and a Dockerfile. GET /pre-surgery serves a simple placeholder HTML page, and GET /pre-surgery/api/health returns {"status":"ok"}. All routes are mounted under the /pre-surgery prefix, and the app listens on the port from the PORT environment variable. No clinical content, no patient data, no database.
