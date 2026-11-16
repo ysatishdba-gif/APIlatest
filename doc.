@@ -1,13 +1,3 @@
-### Testing against a live external repo
+I can’t start Phase 1 yet. Both paths you provided point to the DPE_POC parent folder, which contains the agent-instructions repos—not the required caf-template-project and caf-template-app-resources clones. Also, gh and az aren’t available in this environment.
 
-Some skills document a dependency on a real script or file living in a
-separate, external repo (e.g. `cloud-sql-onboarding`'s `enable_cloud_sql.py`,
-which lives in `caf-template-app-resources`, an Azure DevOps repo — not
-this one). A case can clone that repo directly in its `scaffold:` — see
-`skills/cloud-sql-onboarding/evals/enables-terraform-toggle-against-live-template/`.
-This is a deliberate choice: **unpinned, always the live `template` branch**,
-matching what the skill itself already assumes ("keep your local clone
-pulled to latest") — the point is that a breaking change in the external
-repo surfaces as an eval failure the next time this runs, not that the eval
-stays stable forever. There's no separate drift-detection job; running
-against live HEAD *is* the drift check.
+Please clone both template repos there, check them out to template, pull the latest changes, and make sure gh and az are installed and authenticated. Then send me the paths to each repo directory. I’ll read the canonical bootstrap instructions and check the dpe-poc catalog entry for the PAU and ADO project before proceeding.
