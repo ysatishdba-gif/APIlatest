@@ -1,3 +1,9 @@
-For Phase 1’s project bootstrap config, I have the project slug dpe-pre-surgery, program dpe-poc, PAU 100-00000-0000, and ADO mapping mclm / DPE_POC from the catalog. Please confirm or override the ADO repo name, say whether to add any extra IAM roles, and choose the apply/promotion behavior. I recommend manual for the first apply so you review the Terraform plan; default promotion is develop only.
+Install Terraform 1.17.1
+To clear the preflight blockers: (1) may I install Terraform 1.17.1 from the verified HashiCorp Winget package? (2) what Git author name should be recorded, and do you approve setting your Git identity globally using that name and the email you previously gave? (3) if Mayo IT has provided an approved CA bundle for Azure CLI, give me its local file path; otherwise we’ll pause ADO extension setup until IT resolves the trust issue. No passwords or tokens are needed.
 
-Catalog-backed default is mclm.
+Install from the verified HashiCorp Winget package.
+
+Git author name: Name to record on the new bootstrap commit.
+Set Git identity globally: Set global user.name to the value above and user.email to your previously provided address.
+Approved CA bundle path (optional): Local path from Mayo IT for Azure CLI TLS trust; leave blank if not available.
+
