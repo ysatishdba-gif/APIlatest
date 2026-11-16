@@ -1,1 +1,1 @@
-It would be targeted at the ext-dpe-poc folder if it is to be external facing, and the dpe-poc folder if it is to be internal facing
+Good! You're creating a new GCP project with 1 service (pre-surgery-app) that includes both frontend and backend, without a database. This means you'll need routing for both public UI traffic (Akamai) and API traffic (Apigee).
