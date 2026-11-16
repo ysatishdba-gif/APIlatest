@@ -1,0 +1,287 @@
+Code-a-thon Nov 17th  18th  19th   2026 
+
+Outcomes, scope, data, and working plan for the upcoming build 
+
+Core message: This code-a-thon is intended to produce functional first prototypes of a patient-education chat experience and perioperative care companions, while also creating initial interfaces for Voice of Customer data, call-transcript data, and our experiment portfolio/results. In parallel, we will establish the evaluation, discovery, and insight practices needed to improve these experiences. The initial prototypes are for controlled clinician/care-team evaluation using live data—not patient-facing deployment. 
+
+1. What We Want to Accomplish 
+
+By the end of the code-a-thon, we should have tangible, testable prototype versions of the three core product outcomes, plus three enabling interfaces for Voice of Customer data, call-transcript data, and experiment data/results. Together, these outputs should give us both working experiences and a stronger foundation for evaluation, discovery, insights, and continued experimentation. 
+
+Outcome 
+
+Focus 
+
+End-of-code-a-thon target 
+
+Outcome 1 
+
+Chat experience + evaluation framework 
+
+A demoable first version of the chat experience, a defined feature set, and a practical evaluation approach for content quality and experiments. 
+
+Outcome 4 
+
+Pre-surgery care companion 
+
+Support for a patient once a surgery is scheduled, focused on preparation, education, and questions leading up to surgery. 
+
+Outcome 5 
+
+Post-surgery / Going Home Companion 
+
+Support after the surgery is completed, focused on recovery, discharge, and common post-surgery questions. 
+
+Foundational enablers 
+
+Voice of Customer interface 
+
+An initial interface for accessing and exploring Voice of Customer data, plus a first-pass analysis of themes, signals, and opportunities relevant to the care-companion experiences. 
+
+Foundational enablers 
+
+Call-transcript interface 
+
+An initial interface for accessing and exploring call-transcript data, using available/prepared data to understand patient questions and support needs beyond inbox messages. 
+
+Foundational enablers 
+
+Experiment portfolio and results interface 
+
+A consolidated interface for experiments and experiment data/results to date, including hypotheses, measures, status, findings, and conclusions where available. 
+
+2. Outcome 1 — Chat Experience and Evaluation Framework 
+
+Deliver a first, demoable prototype version of the chat application for internal stakeholders and designated reviewers. 
+
+Define the initial feature set that is expected to be working by the end of the code-a-thon. 
+
+Create a first version of an evaluation framework for content validation, response quality, and experiment measurement. 
+
+Produce a one-page summary of the evaluation approach so we can clearly state what we measured and how the prototype performed against those measures. 
+
+Define the initial experiments either as pre-work or during Day 1. The goal is to start learning while we are building—not wait until the prototype is complete. 
+
+Use this outcome to establish the repeatable patterns for experimentation that can be carried into later iterations. 
+
+3. Outcome 4 — Pre-Surgery Care Companion 
+
+Entry point: The prototype experience begins when a surgery is scheduled. 
+
+The companion supports the period from surgery scheduling through the surgery itself. 
+
+It should answer questions and provide education that help the patient prepare for the upcoming surgery. 
+
+General appointment preparation that occurs before a surgery is scheduled is out of scope for this outcome. 
+
+The scheduled surgery acts as the trigger that starts the “preparing for surgery” experience and defines the patient’s position in the journey. 
+
+The code-a-thon target is a functional prototype for a specific surgery use case—not a complete solution for every perioperative scenario. 
+
+4. Outcome 5 — Post-Surgery / “Going Home” Companion 
+
+Entry point: The prototype experience begins once the surgery has been completed. 
+
+Support the patient’s common questions and information needs after surgery, including the transition home and early recovery period. 
+
+For this first version, assume a single completed surgery and no additional surgery currently on file, even though real patients may have multiple procedures. 
+
+Use the draft post-surgery interface as the starting point for the functional prototype. 
+
+Meds-to-Beds integration is explicitly out of scope for this code-a-thon and should be considered in a subsequent iteration. 
+
+5. Additional Foundational enablers Code-a-thon Outcomes — Data and Experiment Interfaces 
+
+Voice of Customer interface 
+
+Create an initial interface that makes Voice of Customer data accessible for exploration and analysis. 
+
+Complete a first-pass analysis to identify themes, recurring needs, friction points, and signals that could influence Outcomes 1, 4, and 5. 
+
+Where feasible, test how Voice of Customer data can be linked to ROOT or the broader data foundation; full production integration can continue after the code-a-thon. 
+
+Call-transcript data interface 
+
+Create an initial interface for available call-transcript data so teams can explore the questions, concerns, and support needs expressed through phone interactions. 
+
+Use prepared or available transcript data for an initial analysis and compare the themes with what we see in inbox messages. 
+
+The code-a-thon outcome is the interface and initial learning loop; full call-center ingestion, history, and production integration can mature in later iterations. 
+
+Experiment portfolio and results interface 
+
+Create a single interface for the experiments we have run or defined to date and the data/results associated with them. 
+
+Capture the hypothesis, experiment design, measures, status, results, conclusions, and supporting data or links where available. 
+
+Use this as the beginning of a durable experiment record so teams can understand what has been tested, what was learned, and what should be tested next. 
+
+6. Scope Boundaries — What This Is and Is Not 
+
+This is a deliberately narrow first prototype  version designed to prove/ experiment the experience, data patterns, and technical approach. 
+
+The objective is a functional prototype that can be evaluated and iterated—not the product. 
+
+The initial production prototype use is not patient-facing. It is intended for controlled evaluation by physicians, clinical teams, and care teams using live data to get feedback.  
+
+Using live data allows reviewers to compare the experience and evaluate real-world complexity that is difficult to reproduce with synthetic data alone. 
+
+A first interface for call-transcript data is in scope. Full call-center history ingestion and production-grade integration are not required for this code-a-thon and can continue as the data pipeline matures. 
+
+Complex multi-surgery journeys are not addressed in the first version of Outcome 5. 
+
+7. Data We Will Use 
+
+Primary source: Inbox messages 
+
+Use patient inbox messages and the responses provided by physicians, nurses, clinics, or other care-team members as the primary source for question-and-answer patterns. 
+
+Focus on messages associated with preparation for surgery and the period after surgery. 
+
+Use these messages to identify recurring questions, gaps in education, and the content the companion should be able to provide. 
+
+Journey/state source: ROOT 
+
+Use ROOT as the source for understanding where a patient is in the journey and what events or states indicate that position. 
+
+Use the data to define the practical boundaries for “pre-surgery” and “post-surgery” cohorts and to determine when the experience should activate. 
+
+Day 1 should include enough analysis of this data to understand what is available, what can be reliably inferred, and what questions require additional work. 
+
+Voice of Customer data 
+
+Expose available Voice of Customer data through an initial interface and perform a first-pass analysis of themes and signals relevant to the experience. 
+
+Connecting this data into ROOT or a broader production data foundation remains a stretch goal; the interface and initial analysis are code-a-thon outcomes. 
+
+Call-transcript data 
+
+Expose available or prepared call-transcript data through an initial interface and use it to identify patient questions, concerns, and recurring support needs. 
+
+Compare transcript-derived themes with inbox-derived themes to understand where the channels reinforce each other and where they reveal different needs. 
+
+Treat full call-center data integration and production ingestion as follow-on work if the source pipeline is not yet complete. 
+
+Experiment data and results 
+
+Bring together experiments and experiment data/results to date into a common interface that can be reviewed during and after the code-a-thon. 
+
+Make the experiment record easy to understand: hypothesis, setup, measures, status, results, conclusions, and supporting evidence where available. 
+
+8. Discovery, Insight, and Experiment Activities 
+
+Important framing: For this code-a-thon, “discovery agent,” “insight agent,” and “experiment agent” are best treated as work patterns or activities that support the product outcomes—not necessarily as three separate products that must be completed. 
+
+Activity 
+
+What we will do 
+
+How it supports the outcomes 
+
+Discovery 
+
+Explore ROOT and related data; define the problem statement, journey stages, and entry/exit boundaries. 
+
+Clarifies who belongs in the pre-surgery and post-surgery cohorts and when each experience should activate. 
+
+Insights 
+
+Analyze inbox content to identify recurring questions, themes, content gaps, and opportunities. 
+
+Shapes the questions, answers, education, and interaction design for Outcomes 4 and 5. 
+
+Experiments 
+
+Define hypotheses, evaluation criteria, and measures; run targeted experiments against the chat/prototype. 
+
+Creates the learning loop for Outcome 1 and provides evidence for what should be improved next. 
+
+9. Production Evaluation Approach 
+
+Plan to take the Outcome 4 and Outcome 5 prototypes into a production environment so they can be evaluated against live patient data. 
+
+Limit access to designated physicians, clinical teams, and care teams for evaluation and validation. 
+
+Do not expose the experience directly to patients during this phase. 
+
+Use the production evaluation to understand whether the responses, journey logic, and data interpretation make sense in real clinical workflows and when compared with Epic. 
+
+Capture findings and use them to define the next product iteration and additional integrations. 
+
+10. Day-by-Day Working Plan 
+
+Day 1 — Tuesday: Define, Discover, and Align 
+
+Introduction to evaluations — a practical primer on what evaluations are, why they matter for these experiences, how to define useful measures, and how to apply them during the code-a-thon. 
+
+Discovery and Insights — a primer on the existing data landscape, with a guided look at Inbox data and ROOT data, what each source tells us, and how to use them to frame the experience and identify opportunities. 
+
+Confirm the exact scope and success criteria for Outcomes 1, 4, and 5. 
+
+Analyze ROOT to understand journey states, cohort boundaries, and available signals. 
+
+Analyze inbox data to identify recurring patient questions and information needs. 
+
+Review available Voice of Customer and call-transcript data, define the minimum viable interfaces, and identify the first analysis questions for each source. 
+
+Inventory experiments and results to date and define the minimum information model for the experiment portfolio/results interface. 
+
+Finalize the initial experiments, evaluation criteria, and measures. 
+
+Confirm the minimum feature set and prototype flows for the pre-surgery and post-surgery experiences. 
+
+Days 2–3 — Wednesday and Thursday: Build, Integrate, and Validate 
+
+Build the chat experience, the two care-companion prototypes, and the initial Voice of Customer, call-transcript, and experiment-results interfaces. 
+
+Connect the prototypes to the agreed data and content patterns. 
+
+Run experiments and evaluate responses against the emerging framework. 
+
+Iterate on the experience based on findings from discovery, insights, and testing. 
+
+Prepare the controlled production evaluation path and capture follow-up work that should move into the next iteration. 
+
+11. End-of-Code-a-thon Deliverables 
+
+A first version prototype of the patient-education/chat experience that can be demonstrated to clinical, content, marketing, and technical stakeholders. 
+
+A documented initial feature set for the chat experience. 
+
+A one-page evaluation framework covering content validation, response quality, experiments, and success measures. 
+
+A functional pre-surgery care companion prototype (Outcome 4). 
+
+A functional post-surgery / Going Home Companion prototype (Outcome 5). 
+
+An initial Voice of Customer data interface with a first-pass analysis of relevant themes and signals. 
+
+An initial call-transcript data interface with early analysis using the data available for the code-a-thon. 
+
+A consolidated experiments interface showing experiment definitions, data, status, results, and conclusions to date where available. 
+
+A controlled production evaluation approach for Outcomes 4 and 5 using live data and clinician/care-team review. 
+
+Documented discoveries and insights from ROOT and inbox data that explain how the experience was defined. 
+
+A prioritized follow-on backlog, including items such as Meds-to-Beds, production-grade Voice of Customer and call-center integrations, multi-surgery journeys, and continued expansion of the experiment evidence base. 
+
+12. Key Messages to Reinforce in the Room 
+
+We are building a real first prototype version, not a slideware concept—but it is intentionally scoped to a specific use case. 
+
+The key journey boundary is simple: Outcome 4 starts when surgery is scheduled; Outcome 5 starts when surgery is completed. 
+
+Inbox data tells us what patients are asking; ROOT helps us understand where the patient is in the journey. 
+
+Discovery, insights, and experiments are the learning mechanisms that support the products we are building. 
+
+The Voice of Customer, call-transcript, and experiment interfaces are enabling assets: they make the evidence and learning behind the experiences visible, reusable, and easier to act on. 
+
+The first production evaluation is clinician/care-team facing, using live data; it is not a patient-facing launch. 
+
+Success at the end of the code-a-thon is both a working prototype and a clearer, evidence-based path for the next iteration. 
+
+Suggested close: “At the end of the code-a-thon, we want working first prototype versions of the experiences, a clear way to evaluate them, and practical interfaces into Voice of Customer, call-transcript, and experiment evidence—so we leave with both functioning prototypes and a stronger, evidence-based foundation for what we should build and test next.” 
+
+ 
