@@ -1,1 +1,4 @@
-gcloud projects describe dpe-pre-surgery-d --format="value(labels)"
+The app, Dockerfile and .github/workflows/deploy-dev.yml already exist uncommitted in my local clone of ymc-satish-code2. Read those files first and reuse them. Don’t generate a new workflow. Then tell me what’s still missing.
+
+
+gcloud compute networks vpc-access connectors list --project=dpe-pre-surgery-d --region=us-central1
