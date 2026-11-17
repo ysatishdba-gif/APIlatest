@@ -1,4 +1,1 @@
-The app, Dockerfile and .github/workflows/deploy-dev.yml already exist uncommitted in my local clone of ymc-satish-code2. Read those files first and reuse them. Don’t generate a new workflow. Then tell me what’s still missing.
-
-
-gcloud compute networks vpc-access connectors list --project=dpe-pre-surgery-d --region=us-central1
+I set it from the gsa2-im-* secret in dpe-poc-default-non-prod, unchanged. Don’t switch auth methods. Read references/github-environments-setup.md and references/TROUBLESHOOTING.md for the expected format and match the failing error text against them.
