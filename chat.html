@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Care companion</title>
+<style>
+  :root { --ink:#1c2733; --muted:#5d6b7a; --line:#d8dee5; --bg:#f4f6f8; --card:#fff; --pre:#0b5cab; --post:#1f7a55; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--bg); }
+  .app { max-width: 760px; margin: 0 auto; min-height: 100vh; display:flex; flex-direction:column; padding: 16px; gap: 12px; }
+  header { background:var(--card); border:1px solid var(--line); border-left:6px solid var(--accent, var(--pre)); border-radius:8px; padding:14px 16px; }
+  header h1 { margin:0 0 4px; font-size: 1.25rem; }
+  header p { margin:0; color:var(--muted); font-size:.9rem; }
+  .notice { font-size:.8rem; color:var(--muted); }
+  .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  label { font-size:.85rem; color:var(--muted); }
+  select, input, button { font: inherit; }
+  select, input { padding:9px 10px; border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink); }
+  #chips { display:flex; flex-wrap:wrap; gap:8px; }
+  .chip { border:1px solid var(--accent, var(--pre)); color:var(--accent, var(--pre)); background:#fff; border-radius:999px; padding:6px 12px; font-size:.85rem; cursor:pointer; }
+  .chip:hover { background:var(--bg); }
+  #thread { flex:1; min-height:240px; background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; }
+  .msg { max-width: 85%; padding:9px 12px; border-radius:12px; line-height:1.4; white-space:pre-wrap; overflow-wrap:anywhere; }
+  .msg.user { align-self:flex-end; background:var(--accent, var(--pre)); color:#fff; }
+  .msg.bot { align-self:flex-start; background:var(--bg); border:1px solid var(--line); }
+  .msg.error { align-self:flex-start; background:#fdecec; border:1px solid #e5a9a9; }
+  .empty { color:var(--muted); font-size:.9rem; margin:auto; text-align:center; }
+  form { display:flex; gap:8px; }
+  form input { flex:1; min-width:0; }
+  button.send { background:var(--accent, var(--pre)); color:#fff; border:0; border-radius:6px; padding:9px 16px; cursor:pointer; }
+  button:disabled { opacity:.6; cursor:default; }
+  button:focus-visible, select:focus-visible, input:focus-visible, .chip:focus-visible { outline:3px solid #f0b429; outline-offset:2px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header id="header">
+    <h1 id="title">Care companion</h1>
+    <p id="subtitle">Select a patient to begin.</p>
+  </header>
+  <p class="notice">Prototype with sample data. Not for patient use.</p>
+  <div class="row">
+    <label for="patient">Patient</label>
+    <select id="patient"></select>
+  </div>
+  <div id="chips" aria-label="Suggested questions"></div>
+  <div id="thread" aria-live="polite"><p class="empty">Ask a question or pick a suggestion.</p></div>
+  <form id="form">
+    <input id="message" autocomplete="off" maxlength="1000" placeholder="Type a question" aria-label="Your question">
+    <button class="send" id="send" type="submit">Send</button>
+  </form>
+</div>
+<script>
+  const API = "/pre-surgery/api";
+  const VIEWS = {
+    pre_surgery:  { title: "Pre-surgery companion", subtitle: "Preparing for your upcoming surgery.", color: "var(--pre)" },
+    post_surgery: { title: "Going Home companion",  subtitle: "Recovering after your surgery.",       color: "var(--post)" }
+  };
+  const el = id => document.getElementById(id);
+  const patient = el("patient"), chips = el("chips"), thread = el("thread"), form = el("form"), message = el("message"), send = el("send");
+
+  function addMessage(text, kind) {
+    const empty = thread.querySelector(".empty");
+    if (empty) empty.remove();
+    const div = document.createElement("div");
+    div.className = "msg " + kind;
+    div.textContent = text;
+    thread.appendChild(div);
+    thread.scrollTop = thread.scrollHeight;
+  }
+
+  function showState(state) {
+    const view = VIEWS[state];
+    if (!view) return;
+    el("title").textContent = view.title;
+    el("subtitle").textContent = view.subtitle;
+    document.documentElement.style.setProperty("--accent", view.color);
+  }
+
+  async function getJson(url, options) {
+    const response = await fetch(url, options);
+    if (!response.ok) throw new Error("Request failed (" + response.status + ")");
+    return response.json();
+  }
+
+  async function loadPatient() {
+    thread.innerHTML = '<p class="empty">Ask a question or pick a suggestion.</p>';
+    chips.innerHTML = "";
+    try {
+      const data = await getJson(API + "/questions?patient_key=" + encodeURIComponent(patient.value));
+      showState(data.journey_state);
+      data.questions.forEach(q => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "chip"; b.textContent = q;
+        b.addEventListener("click", () => ask(q));
+        chips.appendChild(b);
+      });
+    } catch (err) { addMessage("Could not load this patient. " + err.message, "error"); }
+  }
+
+  async function ask(text) {
+    text = text.trim();
+    if (!text) return;
+    addMessage(text, "user");
+    send.disabled = true;
+    try {
+      const data = await getJson(API + "/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ patient_key: patient.value, message: text })
+      });
+      showState(data.journey_state);
+      addMessage(data.answer, "bot");
+    } catch (err) { addMessage("Something went wrong. " + err.message, "error"); }
+    finally { send.disabled = false; message.focus(); }
+  }
+
+  form.addEventListener("submit", e => { e.preventDefault(); const t = message.value; message.value = ""; ask(t); });
+  patient.addEventListener("change", loadPatient);
+
+  (async () => {
+    try {
+      const data = await getJson(API + "/patients");
+      data.patients.forEach(p => {
+        const o = document.createElement("option");
+        o.value = p.key; o.textContent = p.label;
+        patient.appendChild(o);
+      });
+      await loadPatient();
+    } catch (err) { addMessage("Could not load patients. " + err.message, "error"); }
+  })();
+</script>
+</body>
+</html>
