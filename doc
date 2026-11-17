@@ -1,0 +1,7 @@
+Extend the existing FastAPI placeholder into a chat UI. Keep all routes under /pre-surgery and keep the existing health route, Dockerfile and tests working.
+
+Add data.py with three functions that return sample data only: get_journey_state(patient_key) returning pre_surgery or post_surgery, get_common_questions(state) returning 5 questions, and get_answer(question, state) returning a canned answer. Two sample patients: PK-DEMO-1 (surgery scheduled) and PK-DEMO-2 (surgery completed). No real patient data.
+Add POST /pre-surgery/api/chat taking patient_key and message, returning the answer and the journey state.
+Serve a single-page chat UI at /pre-surgery: a patient selector, a header showing “Pre-surgery companion” or “Going Home companion” by state, suggested question chips, and a message thread. Plain HTML, CSS and JS, no build step.
+Add unit tests for the three data functions and the chat endpoint.
+Show me how to run it locally with uvicorn.
