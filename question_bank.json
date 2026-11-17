@@ -1,0 +1,811 @@
+{
+ "_about": "Seed data from the Outcome 4 experiment proposal, Appendix A. Clusters and trigger mappings are starting hypotheses. intent, acuity, frequency, answer and answer_rating are null until the experiments fill them in. No patient data.",
+ "triggers": [
+  {
+   "id": "imaging",
+   "name": "Imaging or test ordered or resulted"
+  },
+  {
+   "id": "injection",
+   "name": "Injection"
+  },
+  {
+   "id": "visit",
+   "name": "Visit summary / plan of care"
+  },
+  {
+   "id": "presurgical",
+   "name": "Pre-surgical optimization"
+  },
+  {
+   "id": "surgery",
+   "name": "Surgery discussed or scheduled"
+  },
+  {
+   "id": "postop",
+   "name": "Post-op / going home"
+  },
+  {
+   "id": "messaging",
+   "name": "Messaging / contact"
+  }
+ ],
+ "questions": [
+  {
+   "id": "Q01",
+   "category": "Surgery overview and scheduling",
+   "question": "Describe the surgery for me.",
+   "triggers": [
+    "surgery"
+   ],
+   "cluster": "A",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Trigger: surgery discussed or scheduled.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q02",
+   "category": "Surgery overview and scheduling",
+   "question": "How long is surgery?",
+   "triggers": [
+    "surgery"
+   ],
+   "cluster": "A",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q03",
+   "category": "Surgery overview and scheduling",
+   "question": "When can I schedule surgery?",
+   "triggers": [],
+   "cluster": null,
+   "scope": "outcome_3",
+   "experiments": "Exp 2 (volume)",
+   "notes": "Likely Outcome 3 (scheduling).",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q04",
+   "category": "Surgery overview and scheduling",
+   "question": "Why do I have to wait so long for surgery?",
+   "triggers": [],
+   "cluster": null,
+   "scope": "outcome_3",
+   "experiments": "Exp 2 (volume)",
+   "notes": "Likely Outcome 3. Expectation-setting opportunity.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q05",
+   "category": "Surgery overview and scheduling",
+   "question": "Can I get my appointment moved up?",
+   "triggers": [],
+   "cluster": null,
+   "scope": "outcome_3",
+   "experiments": "Exp 2 (volume)",
+   "notes": "Likely Outcome 3. Patients with split medical and surgical visits often expect the medical team to move the surgical date.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q06",
+   "category": "Surgery overview and scheduling",
+   "question": "Can my wife stay at the hospital during surgery? How will she get updates?",
+   "triggers": [],
+   "cluster": null,
+   "scope": "deferred",
+   "experiments": "Not tested",
+   "notes": "Shared understanding (caregiver). Deliberately deferred.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q07",
+   "category": "Pre-surgical requirements and testing",
+   "question": "Why do I have to quit smoking?",
+   "triggers": [
+    "presurgical"
+   ],
+   "cluster": "A or B",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Patients are surprised at the visit. Test as an earlier, proactive trigger.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q08",
+   "category": "Pre-surgical requirements and testing",
+   "question": "Why do I have to see endocrinology and get on osteoporosis medications before surgery? How long will I be on the medication, what are the side effects, and what will it cost?",
+   "triggers": [
+    "presurgical"
+   ],
+   "cluster": "A or B",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Medication and cost parts likely need patient context.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q09",
+   "category": "Pre-surgical requirements and testing",
+   "question": "Why do I need updated imaging prior to surgery?",
+   "triggers": [
+    "imaging"
+   ],
+   "cluster": "A or B",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Trigger: imaging ordered.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q10",
+   "category": "Pre-surgical requirements and testing",
+   "question": "Why do I need X-rays when I've just had an MRI?",
+   "triggers": [
+    "imaging"
+   ],
+   "cluster": "A or B",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Trigger: imaging ordered.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q11",
+   "category": "Pre-surgical requirements and testing",
+   "question": "Why do I need bone density testing?",
+   "triggers": [
+    "imaging"
+   ],
+   "cluster": null,
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Purpose of test.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q12",
+   "category": "Pre-surgical requirements and testing",
+   "question": "Why did I need this lab before surgery?",
+   "triggers": [],
+   "cluster": null,
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Purpose of test.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q13",
+   "category": "Procedures and results",
+   "question": "What do the results of my imaging (CT, MRI, X-ray) mean? Does this mean I need surgery?",
+   "triggers": [
+    "imaging"
+   ],
+   "cluster": "B or C",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Candidate must-escalate category.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q14",
+   "category": "Procedures and results",
+   "question": "What does this lab result mean?",
+   "triggers": [],
+   "cluster": "B or C",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Needs patient-specific data.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q15",
+   "category": "Procedures and results",
+   "question": "What is an EMG? Why do I need one? Does it hurt? Is there prep? Will I be put to sleep?",
+   "triggers": [
+    "imaging"
+   ],
+   "cluster": "A",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Anchor example trigger (EMG result or order). Cluster A for the procedure education parts.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q16",
+   "category": "Procedures and results",
+   "question": "Why am I not a surgical candidate?",
+   "triggers": [],
+   "cluster": "C",
+   "scope": "outcome_4",
+   "experiments": "Exp 2",
+   "notes": "Sensitive clinical judgment.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q17",
+   "category": "Injections",
+   "question": "Why do I need an injection?",
+   "triggers": [
+    "injection"
+   ],
+   "cluster": "A or B",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Purpose of treatment.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q18",
+   "category": "Injections",
+   "question": "Has my injection failed if I don't have pain relief after 2 days?",
+   "triggers": [
+    "injection"
+   ],
+   "cluster": "B or C",
+   "scope": "outcome_4",
+   "experiments": "Exp 2, 3",
+   "notes": "Agent would need timing and symptom details before answering.",
+   "gather_flow": "G04",
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q19",
+   "category": "Injections",
+   "question": "Is this a normal reaction to my injection? (includes: I have a rash at the injection site.)",
+   "triggers": [
+    "injection"
+   ],
+   "cluster": "B or C",
+   "scope": "outcome_4",
+   "experiments": "Exp 2, 3",
+   "notes": "Gather onset, appearance, other symptoms. Escalation path needed.",
+   "gather_flow": "G03",
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q20",
+   "category": "Pain management",
+   "question": "What will my pain control be like? How much pain will I be in, and what medications will I take?",
+   "triggers": [],
+   "cluster": "B or C",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Surgeon- and procedure-specific.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q21",
+   "category": "Pain management",
+   "question": "I'm in so much pain and my appointment isn't soon enough. What can I do to manage my pain right now?",
+   "triggers": [],
+   "cluster": "B or C",
+   "scope": "outcome_4",
+   "experiments": "Exp 2, 3",
+   "notes": "Appears in three sources, a signal of high frequency. Needs information gathering and an escalation threshold.",
+   "gather_flow": "G01",
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q22",
+   "category": "Pain management",
+   "question": "The pain medication is making me sick to my stomach. What else can I take?",
+   "triggers": [],
+   "cluster": null,
+   "scope": "outcome_4",
+   "experiments": "Exp 3",
+   "notes": "Medication change likely needs a clinician. Gather what was taken, when, and severity.",
+   "gather_flow": "G02",
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q23",
+   "category": "Hospital stay, recovery, and home care",
+   "question": "What is recovery like?",
+   "triggers": [
+    "surgery"
+   ],
+   "cluster": "A",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q24",
+   "category": "Hospital stay, recovery, and home care",
+   "question": "What is the expected hospital stay?",
+   "triggers": [
+    "surgery"
+   ],
+   "cluster": "A",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Procedure-specific.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q25",
+   "category": "Hospital stay, recovery, and home care",
+   "question": "How will I care for myself at home?",
+   "triggers": [
+    "postop"
+   ],
+   "cluster": "A, with B where it depends on surgeon or procedure",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Trigger: discharge.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q26",
+   "category": "Hospital stay, recovery, and home care",
+   "question": "What kind of stitches will I have, and do they need to come out?",
+   "triggers": [
+    "postop"
+   ],
+   "cluster": "A",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q27",
+   "category": "Hospital stay, recovery, and home care",
+   "question": "Do I need a brace?",
+   "triggers": [
+    "surgery"
+   ],
+   "cluster": "A",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Surgeon-specific.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q28",
+   "category": "Hospital stay, recovery, and home care",
+   "question": "How long do I wear my brace or collar?",
+   "triggers": [
+    "surgery"
+   ],
+   "cluster": "A",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Surgeon-specific.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q29",
+   "category": "Activity and return to daily life",
+   "question": "When can I shower? When can I drive? When can I return to work? When can I return to intimate relations?",
+   "triggers": [
+    "postop"
+   ],
+   "cluster": "A, with B where it depends on surgeon or procedure",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Four questions combined.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q30",
+   "category": "Medications around surgery",
+   "question": "Should I take my medications the day of surgery?",
+   "triggers": [],
+   "cluster": "B",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Patient-specific medication list.",
+   "gather_flow": "G06",
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q31",
+   "category": "Medications around surgery",
+   "question": "Should I bring my medications to the hospital the day of surgery?",
+   "triggers": [],
+   "cluster": "A",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q32",
+   "category": "Medications around surgery",
+   "question": "When will I get the medications I need after surgery?",
+   "triggers": [],
+   "cluster": null,
+   "scope": "out_of_scope",
+   "experiments": "Exp 2",
+   "notes": "Relates to Meds-to-Beds, which is out of scope for this code-a-thon.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q33",
+   "category": "Follow-up, care plan, and communication",
+   "question": "What will my follow-up plans be?",
+   "triggers": [
+    "visit"
+   ],
+   "cluster": "B",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Patient-specific.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q34",
+   "category": "Follow-up, care plan, and communication",
+   "question": "What are the next steps in my plan of care?",
+   "triggers": [
+    "visit"
+   ],
+   "cluster": "B",
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Patient-specific.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q35",
+   "category": "Follow-up, care plan, and communication",
+   "question": "Why haven't I heard back from my provider yet?",
+   "triggers": [
+    "messaging"
+   ],
+   "cluster": "Routing",
+   "scope": "outcome_4",
+   "experiments": "Exp 2",
+   "notes": "Status or routing question. Measure volume and response lag.",
+   "gather_flow": "G12",
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q36",
+   "category": "Post-visit recall",
+   "question": "I don't remember the name of the pain medication the surgeon said I would take after surgery.",
+   "triggers": [
+    "visit"
+   ],
+   "cluster": null,
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Needs visit notes and orders as context.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q37",
+   "category": "Post-visit recall",
+   "question": "The provider mentioned another appointment with a different kind of doctor, but I can't remember what.",
+   "triggers": [
+    "visit"
+   ],
+   "cluster": null,
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Needs visit notes and referrals as context.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q38",
+   "category": "Post-visit recall",
+   "question": "The surgeon discussed two surgical options, but I don't remember their names and want to look them up.",
+   "triggers": [
+    "visit"
+   ],
+   "cluster": null,
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Needs visit notes. Strong fit for visit-summary trigger.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q39",
+   "category": "Post-visit recall",
+   "question": "What non-surgical treatment options did the doctor list during my appointment?",
+   "triggers": [
+    "visit"
+   ],
+   "cluster": null,
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Needs visit notes.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q40",
+   "category": "Post-visit recall",
+   "question": "How do I do the 24-hour urine collection the doctor ordered?",
+   "triggers": [
+    "visit"
+   ],
+   "cluster": null,
+   "scope": "outcome_4",
+   "experiments": "Exp 1, 2",
+   "notes": "Instruction question. Education content plus the order.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q41",
+   "category": "Seeking additional care or opinions",
+   "question": "Should I be seen in the Emergency Department for this symptom?",
+   "triggers": [],
+   "cluster": "C",
+   "scope": "outcome_4",
+   "experiments": "Exp 2, 3",
+   "notes": "Escalation. Must-escalate candidate.",
+   "gather_flow": "G05",
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q42",
+   "category": "Seeking additional care or opinions",
+   "question": "Should I seek a second opinion for my pain issue?",
+   "triggers": [
+    "visit"
+   ],
+   "cluster": "C",
+   "scope": "outcome_4",
+   "experiments": "Exp 2",
+   "notes": "",
+   "gather_flow": "G10",
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q43",
+   "category": "Seeking additional care or opinions",
+   "question": "What should I do if my primary care provider can't provide the help I feel I need?",
+   "triggers": [],
+   "cluster": "C or routing",
+   "scope": "outcome_4",
+   "experiments": "Exp 2",
+   "notes": "",
+   "gather_flow": "G11",
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q44",
+   "category": "Cost and insurance",
+   "question": "How much will this cost me?",
+   "triggers": [],
+   "cluster": null,
+   "scope": "outcome_2",
+   "experiments": "Exp 2 (volume)",
+   "notes": "Likely Outcome 2 (coverage and cost).",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  },
+  {
+   "id": "Q45",
+   "category": "Cost and insurance",
+   "question": "Will you get permission from my insurance?",
+   "triggers": [],
+   "cluster": null,
+   "scope": "outcome_2",
+   "experiments": "Exp 2 (volume)",
+   "notes": "Likely Outcome 2.",
+   "gather_flow": null,
+   "intent": null,
+   "acuity": null,
+   "frequency": null,
+   "answer": null,
+   "answer_rating": null
+  }
+ ]
+}

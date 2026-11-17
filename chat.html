@@ -3,132 +3,304 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Care companion</title>
+<title>Outcome 4 experiments</title>
 <style>
-  :root { --ink:#1c2733; --muted:#5d6b7a; --line:#d8dee5; --bg:#f4f6f8; --card:#fff; --pre:#0b5cab; --post:#1f7a55; }
-  * { box-sizing: border-box; }
-  body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--bg); }
-  .app { max-width: 760px; margin: 0 auto; min-height: 100vh; display:flex; flex-direction:column; padding: 16px; gap: 12px; }
-  header { background:var(--card); border:1px solid var(--line); border-left:6px solid var(--accent, var(--pre)); border-radius:8px; padding:14px 16px; }
-  header h1 { margin:0 0 4px; font-size: 1.25rem; }
-  header p { margin:0; color:var(--muted); font-size:.9rem; }
-  .notice { font-size:.8rem; color:var(--muted); }
-  .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-  label { font-size:.85rem; color:var(--muted); }
-  select, input, button { font: inherit; }
-  select, input { padding:9px 10px; border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink); }
-  #chips { display:flex; flex-wrap:wrap; gap:8px; }
-  .chip { border:1px solid var(--accent, var(--pre)); color:var(--accent, var(--pre)); background:#fff; border-radius:999px; padding:6px 12px; font-size:.85rem; cursor:pointer; }
-  .chip:hover { background:var(--bg); }
-  #thread { flex:1; min-height:240px; background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; }
-  .msg { max-width: 85%; padding:9px 12px; border-radius:12px; line-height:1.4; white-space:pre-wrap; overflow-wrap:anywhere; }
-  .msg.user { align-self:flex-end; background:var(--accent, var(--pre)); color:#fff; }
-  .msg.bot { align-self:flex-start; background:var(--bg); border:1px solid var(--line); }
-  .msg.error { align-self:flex-start; background:#fdecec; border:1px solid #e5a9a9; }
-  .empty { color:var(--muted); font-size:.9rem; margin:auto; text-align:center; }
-  form { display:flex; gap:8px; }
-  form input { flex:1; min-width:0; }
-  button.send { background:var(--accent, var(--pre)); color:#fff; border:0; border-radius:6px; padding:9px 16px; cursor:pointer; }
+  :root { --ink:#1c2733; --muted:#5d6b7a; --line:#d8dee5; --bg:#f4f6f8; --card:#fff; --brand:#0b5cab;
+          --ai:#1f7a55; --review:#9a6200; --handoff:#b3261e; --neutral:#5d6b7a; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); background:var(--bg); line-height:1.45; }
+  .app { max-width:860px; margin:0 auto; padding:16px; }
+  h1 { font-size:1.3rem; margin:0; }
+  h2 { font-size:1.05rem; margin:0 0 4px; }
+  .sub, .hint { color:var(--muted); font-size:.88rem; margin:2px 0 0; }
+  .hint { margin:0 0 12px; }
+  .notice { font-size:.8rem; color:var(--muted); margin:6px 0 14px; }
+  nav { display:flex; gap:6px; overflow-x:auto; border-bottom:1px solid var(--line); margin-bottom:14px; }
+  nav button { border:0; background:none; padding:10px 12px; font:inherit; color:var(--muted); cursor:pointer; white-space:nowrap; border-bottom:3px solid transparent; }
+  nav button[aria-selected="true"] { color:var(--brand); border-bottom-color:var(--brand); font-weight:600; }
+  section[hidden] { display:none; }
+  select, input, button { font:inherit; }
+  select, input[type=text] { padding:9px 10px; border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink); max-width:100%; }
+  .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:12px; }
+  .row label { font-size:.85rem; color:var(--muted); }
+  .grow { flex:1; min-width:0; }
+  .btn { background:var(--brand); color:#fff; border:0; border-radius:6px; padding:9px 16px; cursor:pointer; }
+  .btn.ghost { background:#fff; color:var(--brand); border:1px solid var(--brand); }
   button:disabled { opacity:.6; cursor:default; }
-  button:focus-visible, select:focus-visible, input:focus-visible, .chip:focus-visible { outline:3px solid #f0b429; outline-offset:2px; }
+  :focus-visible { outline:3px solid #f0b429; outline-offset:2px; }
+  .list { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+  .item { width:100%; text-align:left; background:var(--card); border:1px solid var(--line); border-radius:8px; padding:11px 12px; cursor:pointer; color:var(--ink); }
+  .item:hover { border-color:var(--brand); }
+  .item .q { display:block; }
+  .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+  .tag { font-size:.74rem; border-radius:999px; padding:2px 9px; border:1px solid var(--line); color:var(--muted); background:#fff; }
+  .tag.ai { color:var(--ai); border-color:var(--ai); }
+  .tag.ai_with_review { color:var(--review); border-color:var(--review); }
+  .tag.handoff { color:var(--handoff); border-color:var(--handoff); }
+  .card { background:var(--card); border:1px solid var(--line); border-left:5px solid var(--neutral); border-radius:8px; padding:14px; margin-top:12px; }
+  .card.ai { border-left-color:var(--ai); } .card.ai_with_review { border-left-color:var(--review); } .card.handoff { border-left-color:var(--handoff); }
+  .card h3 { margin:0 0 8px; font-size:1rem; }
+  .card p { margin:6px 0; }
+  .label { font-size:.78rem; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin-top:10px; }
+  dl { margin:8px 0 0; display:grid; grid-template-columns:auto 1fr; gap:4px 12px; font-size:.88rem; }
+  dt { color:var(--muted); } dd { margin:0; overflow-wrap:anywhere; }
+  .empty { color:var(--muted); font-size:.9rem; }
+  .progress { font-size:.82rem; color:var(--muted); margin-bottom:6px; }
+  .thread { min-height:280px; max-height:55vh; background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; margin-bottom:10px; }
+  .msg { max-width:85%; padding:9px 12px; border-radius:12px; white-space:pre-wrap; overflow-wrap:anywhere; }
+  .msg.user { align-self:flex-end; background:var(--brand); color:#fff; }
+  .msg.bot { align-self:flex-start; background:var(--bg); border:1px solid var(--line); }
+  .msg.bot.handoff { border-color:var(--handoff); } .msg.bot.ai { border-color:var(--ai); } .msg.bot.ai_with_review { border-color:var(--review); }
+  .msg small { display:block; color:var(--muted); margin-bottom:4px; font-size:.76rem; }
+  .msg.error { align-self:flex-start; background:#fdecec; border:1px solid #e5a9a9; }
+  form.line { display:flex; gap:8px; }
 </style>
 </head>
 <body>
 <div class="app">
-  <header id="header">
-    <h1 id="title">Care companion</h1>
-    <p id="subtitle">Select a patient to begin.</p>
-  </header>
-  <p class="notice">Prototype with sample data. Not for patient use.</p>
-  <div class="row">
-    <label for="patient">Patient</label>
-    <select id="patient"></select>
-  </div>
-  <div id="chips" aria-label="Suggested questions"></div>
-  <div id="thread" aria-live="polite"><p class="empty">Ask a question or pick a suggestion.</p></div>
-  <form id="form">
-    <input id="message" autocomplete="off" maxlength="1000" placeholder="Type a question" aria-label="Your question">
-    <button class="send" id="send" type="submit">Send</button>
-  </form>
+  <h1>Outcome 4 experiments</h1>
+  <p class="sub">Spine surgery in-basket questions: anticipate, answer and gather.</p>
+  <p class="notice">Prototype with seed data from the experiment proposal. No patient data. Not for patient use.</p>
+
+  <nav role="tablist" aria-label="Screens">
+    <button role="tab" data-tab="anticipate" aria-selected="true">1. Anticipate</button>
+    <button role="tab" data-tab="answer" aria-selected="false">2. Answer</button>
+    <button role="tab" data-tab="gather" aria-selected="false">3. Gather</button>
+    <button role="tab" data-tab="ask" aria-selected="false">4. Ask your own</button>
+    <button role="tab" data-tab="chat" aria-selected="false">5. Chat</button>
+  </nav>
+
+  <section id="anticipate">
+    <h2>What do patients ask when…?</h2>
+    <p class="hint">Pick a care trigger to see the top questions for it. Ranking uses frequency once the data provides it.</p>
+    <div class="row"><label for="trigger">Trigger</label><select id="trigger"></select></div>
+    <ul class="list" id="triggerQuestions"></ul>
+  </section>
+
+  <section id="answer" hidden>
+    <h2>How might the agent answer when…?</h2>
+    <p class="hint">Pick a question to see how it is handled and the answer from in-basket data.</p>
+    <div class="row"><label for="category">Category</label><select id="category"></select></div>
+    <ul class="list" id="questionList"></ul>
+    <div id="answerCard"></div>
+  </section>
+
+  <section id="gather" hidden>
+    <h2>What else should an agent ask when…?</h2>
+    <p class="hint">Pick a symptom or medication message. Answer the follow-up questions to build the clinician handoff.</p>
+    <div class="row"><label for="flow">Message</label><select id="flow" class="grow"></select></div>
+    <div id="gatherStep"></div>
+    <div id="gatherSummary"></div>
+  </section>
+
+  <section id="ask" hidden>
+    <h2>Ask your own</h2>
+    <p class="hint">Type any question to see the closest match in the question bank and how it would be handled.</p>
+    <form class="line" id="askForm">
+      <input type="text" id="askInput" class="grow" maxlength="1000" autocomplete="off" placeholder="Type a question" aria-label="Your question">
+      <button class="btn" type="submit">Ask</button>
+    </form>
+    <div id="askResult"></div>
+  </section>
+
+  <section id="chat" hidden>
+    <h2>Chat</h2>
+    <p class="hint">A conversation that answers, hands off, or asks follow-up questions as needed.</p>
+    <div class="thread" id="thread" aria-live="polite"><p class="empty">Type a question to begin.</p></div>
+    <form class="line" id="chatForm">
+      <input type="text" id="chatInput" class="grow" maxlength="1000" autocomplete="off" placeholder="Type a message" aria-label="Your message">
+      <button class="btn" id="chatSend" type="submit">Send</button>
+      <button class="btn ghost" id="chatReset" type="button">New chat</button>
+    </form>
+  </section>
 </div>
+
 <script>
   const API = "/pre-surgery/api";
-  const VIEWS = {
-    pre_surgery:  { title: "Pre-surgery companion", subtitle: "Preparing for your upcoming surgery.", color: "var(--pre)" },
-    post_surgery: { title: "Going Home companion",  subtitle: "Recovering after your surgery.",       color: "var(--post)" }
-  };
-  const el = id => document.getElementById(id);
-  const patient = el("patient"), chips = el("chips"), thread = el("thread"), form = el("form"), message = el("message"), send = el("send");
+  const $ = id => document.getElementById(id);
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
 
-  function addMessage(text, kind) {
-    const empty = thread.querySelector(".empty");
-    if (empty) empty.remove();
-    const div = document.createElement("div");
-    div.className = "msg " + kind;
-    div.textContent = text;
-    thread.appendChild(div);
-    thread.scrollTop = thread.scrollHeight;
-  }
-
-  function showState(state) {
-    const view = VIEWS[state];
-    if (!view) return;
-    el("title").textContent = view.title;
-    el("subtitle").textContent = view.subtitle;
-    document.documentElement.style.setProperty("--accent", view.color);
-  }
-
-  async function getJson(url, options) {
-    const response = await fetch(url, options);
+  async function api(path, body) {
+    const options = body ? { method:"POST", headers:{ "Content-Type":"application/json" }, body:JSON.stringify(body) } : undefined;
+    const response = await fetch(API + path, options);
     if (!response.ok) throw new Error("Request failed (" + response.status + ")");
     return response.json();
   }
+  const fail = (target, err) => { target.replaceChildren(el("p", "empty", "Something went wrong. " + err.message)); };
 
-  async function loadPatient() {
-    thread.innerHTML = '<p class="empty">Ask a question or pick a suggestion.</p>';
-    chips.innerHTML = "";
-    try {
-      const data = await getJson(API + "/questions?patient_key=" + encodeURIComponent(patient.value));
-      showState(data.journey_state);
-      data.questions.forEach(q => {
-        const b = document.createElement("button");
-        b.type = "button"; b.className = "chip"; b.textContent = q;
-        b.addEventListener("click", () => ask(q));
-        chips.appendChild(b);
-      });
-    } catch (err) { addMessage("Could not load this patient. " + err.message, "error"); }
+  // Tabs
+  const tabs = [...document.querySelectorAll("nav button")];
+  function showTab(name) {
+    tabs.forEach(t => t.setAttribute("aria-selected", String(t.dataset.tab === name)));
+    document.querySelectorAll("section").forEach(s => { s.hidden = s.id !== name; });
+  }
+  tabs.forEach(t => t.addEventListener("click", () => showTab(t.dataset.tab)));
+
+  // Shared pieces
+  function tagRow(q) {
+    const row = el("div", "tags");
+    row.append(el("span", "tag " + q.handling, q.handling_label));
+    row.append(el("span", "tag", "Intent: " + (q.intent || "not tagged")));
+    row.append(el("span", "tag", "Acuity: " + (q.acuity || "not tagged")));
+    return row;
+  }
+  function questionItem(q, onPick) {
+    const li = el("li");
+    const b = el("button", "item"); b.type = "button";
+    b.append(el("span", "q", q.question), tagRow(q));
+    b.addEventListener("click", () => onPick(q));
+    li.append(b);
+    return li;
+  }
+  function answerCard(q) {
+    const card = el("div", "card " + q.handling);
+    card.append(el("h3", null, q.question), tagRow(q));
+    card.append(el("p", "label", "Response"), el("p", null, q.response));
+    const dl = el("dl");
+    const add = (k, v) => { dl.append(el("dt", null, k), el("dd", null, v)); };
+    add("Starting cluster", q.cluster || "Not assigned");
+    add("Category", q.category);
+    add("Triggers", q.trigger_names.length ? q.trigger_names.join(", ") : "None mapped");
+    add("Experiments", q.experiments);
+    add("Frequency", q.frequency == null ? "Not measured yet" : String(q.frequency));
+    add("Answer rating", q.answer_rating || "Not rated yet");
+    if (q.notes) add("Notes", q.notes);
+    card.append(dl);
+    return card;
+  }
+  function summaryCard(s) {
+    const card = el("div", "card handoff");
+    card.append(el("h3", null, "Clinician handoff summary"));
+    card.append(el("p", "label", "Patient message"), el("p", null, s.message));
+    card.append(el("p", "label", "Information gathered"));
+    const dl = el("dl");
+    s.gathered.forEach(g => dl.append(el("dt", null, g.question), el("dd", null, g.answer)));
+    card.append(dl, el("p", "sub", s.outcome_note));
+    return card;
   }
 
-  async function ask(text) {
-    text = text.trim();
+  // 1. Anticipate
+  async function loadTrigger() {
+    const list = $("triggerQuestions");
+    try {
+      const data = await api("/triggers/" + encodeURIComponent($("trigger").value) + "/questions");
+      list.replaceChildren(...data.questions.map(q => questionItem(q, openAnswer)));
+      if (!data.questions.length) list.replaceChildren(el("p", "empty", "No questions mapped to this trigger yet."));
+    } catch (err) { fail(list, err); }
+  }
+  $("trigger").addEventListener("change", loadTrigger);
+
+  // 2. Answer
+  let allQuestions = [];
+  function renderQuestionList() {
+    const category = $("category").value;
+    const shown = allQuestions.filter(q => !category || q.category === category);
+    $("questionList").replaceChildren(...shown.map(q => questionItem(q, openAnswer)));
+  }
+  function openAnswer(q) {
+    showTab("answer");
+    $("answerCard").replaceChildren(answerCard(q));
+    $("answerCard").scrollIntoView({ behavior:"smooth", block:"nearest" });
+  }
+  $("category").addEventListener("change", () => { $("answerCard").replaceChildren(); renderQuestionList(); });
+
+  // 3. Gather
+  let flows = [], gatherAnswers = [];
+  function currentFlow() { return flows.find(f => f.id === $("flow").value); }
+  function renderGatherStep() {
+    const flow = currentFlow(), step = $("gatherStep");
+    if (!flow) return;
+    const i = gatherAnswers.length;
+    if (i >= flow.follow_ups.length) { step.replaceChildren(); return; }
+    const form = el("form", "line");
+    const input = el("input", "grow"); input.type = "text"; input.maxLength = 1000; input.autocomplete = "off";
+    input.setAttribute("aria-label", flow.follow_ups[i]); input.placeholder = "Type the patient's answer";
+    const next = el("button", "btn", i + 1 === flow.follow_ups.length ? "Finish" : "Next"); next.type = "submit";
+    form.append(input, next);
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      gatherAnswers.push(input.value);
+      if (gatherAnswers.length < flow.follow_ups.length) { renderGatherStep(); return; }
+      step.replaceChildren();
+      try { $("gatherSummary").replaceChildren(summaryCard(await api("/gather/" + flow.id + "/summary", { answers: gatherAnswers }))); }
+      catch (err) { fail($("gatherSummary"), err); }
+    });
+    step.replaceChildren(el("p", "progress", "Follow-up " + (i + 1) + " of " + flow.follow_ups.length), el("h3", null, flow.follow_ups[i]), form);
+    input.focus({ preventScroll:true });
+  }
+  function startGather() { gatherAnswers = []; $("gatherSummary").replaceChildren(); renderGatherStep(); }
+  $("flow").addEventListener("change", startGather);
+
+  // 4. Ask your own
+  $("askForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const text = $("askInput").value.trim(), out = $("askResult");
     if (!text) return;
-    addMessage(text, "user");
-    send.disabled = true;
     try {
-      const data = await getJson(API + "/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ patient_key: patient.value, message: text })
-      });
-      showState(data.journey_state);
-      addMessage(data.answer, "bot");
-    } catch (err) { addMessage("Something went wrong. " + err.message, "error"); }
-    finally { send.disabled = false; message.focus(); }
+      const data = await api("/ask", { message: text });
+      if (data.match === "question") {
+        out.replaceChildren(el("p", "label", "Closest match in the question bank"), answerCard(data.question));
+      } else if (data.match === "flow") {
+        const card = el("div", "card handoff");
+        card.append(el("h3", null, data.flow.message));
+        card.append(el("p", null, "This is a symptom or medication message. The agent would ask follow-up questions before answering or handing off."));
+        const go = el("button", "btn", "Start the follow-up questions"); go.type = "button";
+        go.addEventListener("click", () => { $("flow").value = data.flow.id; showTab("gather"); startGather(); });
+        card.append(go);
+        out.replaceChildren(el("p", "label", "Closest match"), card);
+      } else {
+        out.replaceChildren(el("div", "card", null));
+        out.firstChild.append(el("p", null, data.message));
+      }
+    } catch (err) { fail(out, err); }
+  });
+
+  // 5. Chat
+  let chatState = null;
+  function addMessage(text, cls, caption) {
+    const thread = $("thread");
+    const empty = thread.querySelector(".empty"); if (empty) empty.remove();
+    const div = el("div", "msg " + cls);
+    if (caption) div.append(el("small", null, caption));
+    div.append(document.createTextNode(text));
+    thread.append(div); thread.scrollTop = thread.scrollHeight;
   }
+  $("chatForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const text = $("chatInput").value.trim();
+    if (!text) return;
+    $("chatInput").value = "";
+    addMessage(text, "user");
+    $("chatSend").disabled = true;
+    try {
+      const data = await api("/chat", { message: text, state: chatState });
+      chatState = data.state;
+      const caption = data.matched_question ? data.handling_label + " · matched: " + data.matched_question : null;
+      addMessage(data.reply, "bot " + data.kind, caption);
+      if (data.summary) {
+        const lines = data.summary.gathered.map(g => g.question + "\n  " + g.answer).join("\n");
+        addMessage("Patient message: " + data.summary.message + "\n\n" + lines, "bot handoff", "Clinician handoff summary");
+      }
+    } catch (err) { addMessage("Something went wrong. " + err.message, "error"); }
+    finally { $("chatSend").disabled = false; $("chatInput").focus(); }
+  });
+  $("chatReset").addEventListener("click", () => {
+    chatState = null;
+    $("thread").replaceChildren(el("p", "empty", "Type a question to begin."));
+  });
 
-  form.addEventListener("submit", e => { e.preventDefault(); const t = message.value; message.value = ""; ask(t); });
-  patient.addEventListener("change", loadPatient);
-
+  // Start
   (async () => {
     try {
-      const data = await getJson(API + "/patients");
-      data.patients.forEach(p => {
-        const o = document.createElement("option");
-        o.value = p.key; o.textContent = p.label;
-        patient.appendChild(o);
-      });
-      await loadPatient();
-    } catch (err) { addMessage("Could not load patients. " + err.message, "error"); }
+      const [t, q, g] = await Promise.all([api("/triggers"), api("/questions"), api("/gather")]);
+      $("trigger").replaceChildren(...t.triggers.map(x => { const o = el("option", null, x.name + " (" + x.question_count + ")"); o.value = x.id; return o; }));
+      allQuestions = q.questions;
+      const all = el("option", null, "All categories"); all.value = "";
+      $("category").replaceChildren(all, ...q.categories.map(c => { const o = el("option", null, c); o.value = c; return o; }));
+      flows = g.flows;
+      $("flow").replaceChildren(...flows.map(f => { const o = el("option", null, f.message); o.value = f.id; return o; }));
+      renderQuestionList(); startGather(); await loadTrigger();
+    } catch (err) { fail($("triggerQuestions"), err); }
   })();
 </script>
 </body>

@@ -1,0 +1,115 @@
+{
+ "_about": "Seed information-gathering flows from the Outcome 4 experiment proposal, Experiment 3. Answer-or-handoff rules are not defined yet, so every flow ends in a clinician handoff.",
+ "flows": [
+  {
+   "id": "G01",
+   "message": "I'm in so much pain and my appointment isn't soon enough. What can I do right now?",
+   "follow_ups": [
+    "Where is the pain?",
+    "How severe is it?",
+    "When did it start, and is it changing?",
+    "What have you taken so far?",
+    "Any weakness, numbness, or bowel or bladder changes?"
+   ]
+  },
+  {
+   "id": "G02",
+   "message": "The pain medication is making me sick to my stomach. What else can I take?",
+   "follow_ups": [
+    "Which medication and dose?",
+    "When did the nausea start relative to the dose?",
+    "Is it nausea only, or vomiting?",
+    "Can you keep fluids down?",
+    "Any allergies or other medications?"
+   ]
+  },
+  {
+   "id": "G03",
+   "message": "Is this a normal reaction to my injection? (includes a rash at the injection site)",
+   "follow_ups": [
+    "Which injection, and when?",
+    "What does the site look like?",
+    "Is it spreading, warm, draining, or itchy?",
+    "Any fever?"
+   ]
+  },
+  {
+   "id": "G04",
+   "message": "Has my injection failed if I don't have relief after 2 days?",
+   "follow_ups": [
+    "Which injection and when?",
+    "What was the pain level before and now?",
+    "Is anything new or worse?"
+   ]
+  },
+  {
+   "id": "G05",
+   "message": "Should I be seen in the ED for this symptom?",
+   "follow_ups": [
+    "What is the symptom?",
+    "When did it start?",
+    "How severe is it?",
+    "Are any red-flag signs present?"
+   ]
+  },
+  {
+   "id": "G06",
+   "message": "Should I take my medications the day of surgery?",
+   "follow_ups": [
+    "Which medications (blood thinners, diabetes medications, and so on)?",
+    "What is the surgery date?",
+    "Did the surgeon give specific instructions?"
+   ]
+  },
+  {
+   "id": "G07",
+   "message": "My dressing fell off.",
+   "follow_ups": [
+    "When was the surgery?",
+    "Is there drainage, redness, or bleeding?",
+    "Is the incision open?"
+   ]
+  },
+  {
+   "id": "G08",
+   "message": "My medication isn't working.",
+   "follow_ups": [
+    "Which medication?",
+    "How long have you taken it?",
+    "What is the pain now compared with before?"
+   ]
+  },
+  {
+   "id": "G09",
+   "message": "I have a question about osteoporosis medication side effects.",
+   "follow_ups": [
+    "Which medication?",
+    "Are you experiencing a symptom now, or asking in general?"
+   ]
+  },
+  {
+   "id": "G10",
+   "message": "Should I seek a second opinion for my pain issue?",
+   "follow_ups": [
+    "What is the pain issue?",
+    "What is the current plan?"
+   ]
+  },
+  {
+   "id": "G11",
+   "message": "What should I do if my PCP can't provide the help I need?",
+   "follow_ups": [
+    "What help are you looking for?",
+    "What symptoms are you having?"
+   ]
+  },
+  {
+   "id": "G12",
+   "message": "Why haven't I heard back from my provider?",
+   "follow_ups": [
+    "Which message, and when was it sent?",
+    "Have your symptoms changed since then?"
+   ]
+  }
+ ]
+}
